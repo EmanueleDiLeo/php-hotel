@@ -41,7 +41,8 @@ $hotels = [
 
 ];
 
-
+$check = (isset($_GET['check']) == null) ? true : false;
+$voteSelect = (isset($_GET['vote']) == null) ? 0 : $_GET['vote'];
 
 ?>
 
@@ -65,14 +66,22 @@ $hotels = [
   <div class="row mb-4">
     <div class="offset-3 col-6">
       <form action="index.php" method="GET">
-        <!-- <div>
-          <label class="form-label">Solo con parcheggio</label>
-          <select  class="form-select" aria-label="Default select example">
-            <option value="1" selected>No</option>
-            <option value="2">Si</option>
+        <div>
+          <select class="form-select mb-3" name="vote" aria-label="Default select example">
+            <option value=0 selected>Seleziona un voto minimo</option>
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+            <option value=6>6</option>
+            <option value=7>7</option>
+            <option value=8>8</option>
+            <option value=9>9</option>
+            <option value=10>10</option>
           </select>
-        </div> -->
-        <div class="form-check">
+        </div> 
+        <div class="form-check mb-3">
           <input class="form-check-input" type="checkbox" name="check" value=false id="flexCheckDefault">
           <label class="form-check-label" for="check">
             Solo con Parcheggio
@@ -83,10 +92,9 @@ $hotels = [
     </div>
   </div>
 
-  <div class="row">
+  <div class="row pt-4">
     <?php foreach($hotels as $hotel){ ?>
-    <?php $check = (isset($_GET['check']) == null) ? true : false; ?>
-    <?php if($check || $hotel['parking']){ ?>
+    <?php if(($check || $hotel['parking']) && $voteSelect <= $hotel['vote']){ ?>
     <div class="col-4 mb-4 d-flex">
       <div class="card w-100">
         <ul class="my-3">
