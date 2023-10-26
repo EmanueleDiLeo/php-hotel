@@ -42,6 +42,7 @@ $hotels = [
 ];
 
 
+
 ?>
 
 <!DOCTYPE html>
@@ -59,9 +60,33 @@ $hotels = [
 <body>
 
 <div class="container my-5">
-  <h1 class="mb-5 text-center ">Hotel</h1>
+  <h1 class="mb-5 text-center">Hotel</h1>
+
+  <div class="row mb-4">
+    <div class="offset-3 col-6">
+      <form action="index.php" method="GET">
+        <!-- <div>
+          <label class="form-label">Solo con parcheggio</label>
+          <select  class="form-select" aria-label="Default select example">
+            <option value="1" selected>No</option>
+            <option value="2">Si</option>
+          </select>
+        </div> -->
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="check" value=false id="flexCheckDefault">
+          <label class="form-check-label" for="check">
+            Solo con Parcheggio
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Invia</button>
+      </form>
+    </div>
+  </div>
+
   <div class="row">
     <?php foreach($hotels as $hotel){ ?>
+    <?php $check = (isset($_GET['check']) == null) ? true : false; ?>
+    <?php if($check || $hotel['parking']){ ?>
     <div class="col-4 mb-4 d-flex">
       <div class="card w-100">
         <ul class="my-3">
@@ -73,6 +98,7 @@ $hotels = [
         </ul>
       </div>
     </div>
+    <?php } ?>
     <?php } ?>
   </div>
 </div>
