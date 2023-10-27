@@ -92,23 +92,31 @@ $voteSelect = (isset($_GET['vote']) == null) ? 0 : $_GET['vote'];
     </div>
   </div>
 
-  <div class="row pt-4">
-    <?php foreach($hotels as $hotel){ ?>
-    <?php if(($check || $hotel['parking']) && $voteSelect <= $hotel['vote']){ ?>
-    <div class="col-4 mb-4 d-flex">
-      <div class="card w-100">
-        <ul class="my-3">
-          <li class="list-group-item">Nome: <?php echo $hotel['name'] ?></li>
-          <li class="list-group-item">Descrizione: <?php echo $hotel['description'] ?></li>
-          <li class="list-group-item">Parcheggio: <?php  echo $hotel['parking'] ? 'Si' : 'No' ?></li>
-          <li class="list-group-item">Voto: <?php echo $hotel['vote'] ?></li>
-          <li class="list-group-item">Distanza dal centro: <?php echo $hotel['distance_to_center']?> metri</li>
-        </ul>
-      </div>
-    </div>
-    <?php } ?>
-    <?php } ?>
-  </div>
+  <table class="table my-3">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Descrizione</th>
+        <th scope="col">Parcheggio</th>
+        <th scope="col">Voto</th>
+        <th scope="col">Distanza dal centro</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php foreach($hotels as $hotel){ ?>
+      <?php if(($check || $hotel['parking']) && $voteSelect <= $hotel['vote']){ ?>
+      <tr>
+        <td><?php echo $hotel['name'] ?></td>
+        <td><?php echo $hotel['description'] ?></td>
+        <td><?php  echo $hotel['parking'] ? 'Si' : 'No' ?></td>
+        <td><?php echo $hotel['vote'] ?></td>
+        <td><?php echo $hotel['distance_to_center']?> metri</td>
+      </tr>
+      <?php } ?>
+      <?php } ?>
+    </tbody>
+
+  </table>
 </div>
 
 
